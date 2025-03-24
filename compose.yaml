@@ -1,1 +1,23 @@
 services:
+  db:
+    image: mysql:8.0
+    container_name: kongkow-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: kongkow
+      MYSQL_USER: kongkow
+      MYSQL_PASSWORD: kongkow
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - kongkow-network
+
+networks:
+  kongkow-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
